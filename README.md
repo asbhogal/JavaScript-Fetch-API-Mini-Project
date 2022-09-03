@@ -1,6 +1,6 @@
 <h1>Javascript .fetch() API - Mini Project</h1>
 
-A simple mini project from a YouTube crash course which leverages the .fetch() API in JavaScript to pull an image file into the body of a HTML document and handle asynchronous events using promises (async/await) to display it front-end.
+A simple mini project from a YouTube crash course which leverages the .fetch() API in JavaScript to pull a local image file in the directory into the body of a HTML document and handle asynchronous events using promises (async/await) to display it front-end.
 
 <strong>Features</strong><br>
 
