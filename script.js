@@ -1,4 +1,4 @@
-    fetch('bison-plains.jpeg')                      // FETCH THE IMAGE FILE...
+    /*fetch('bison-plains.jpeg')                      // FETCH THE IMAGE FILE...
         .then(response => {                         // ...THEN HANDLE THE PROMISE WITH A RESPONSE...
             console.log(response);                  // ...LOG THE DATA STREAM STORED IN THE RESPONSE IN THE CONSOLE LOG
             return response.blob();                 // CONVERT THE RESPONSE INTO AN IMAGE BLOB. THIS TRIGGERS ANOTHER PROMISE.
@@ -6,7 +6,7 @@
         .then(blob => {                             // CHAIN THE RESPONSES USING then (AND CREATE A NEW VARIABLE CALLED blob)
             console.log(blob);                      // THE RESPONSE TO THE SECOND PROMISE
             document.getElementById('bison-plains').src = URL.createObjectURL(blob);      // TAKES THE DATA OF THE IMAGE (RETURNED AS A blob) AND PLACES IT INTO THE src ATTRIBUTE OF THE img DOM ELEMENT. THE . createObjectURL() FUNCTION IS REQUIRED TO TAKE THE blob OBJECT AND CONVERT IT INTO THE FORMAT AN img DOM ELEMENT WOULD EXPECT (AS THE DATA blob ISN'T IN THE FORMAT THE img DOM ELEMENT EXPECTS)
-        });
+        });*/
 
         // SIMPLY PUT,:
             //  1. FETCH THE IMAGE
@@ -19,3 +19,25 @@
 // 3. READ THE DATA RETURNED AND STORE IT IN A FORMAT THAT CAN BE WORKED WITH (e.g. TEXT, BLOB (IMAGE), ARRAY BUFFER, JSON etc.) FROM THE RESPONSE BODY. IN THIS CASE, IT INVOLVES CONVERTING THE DATA INTO A BLOB, WHICH TRIGGERS ANOTHER PROMISE. THIS CAN THEN BE CHAINED WITH ANOTHER .then
 // 4. MAKE AN IMG HTML DOM ELEMENT WITH THE DATA RETURNED
 // N.B. THE fetch OCCURS ASYNCHRONOUSLY, ie. TIME IS TAKEN TO RETRIEVE THE DATA FROM WHEN THE FUNCTION IS CALLED
+
+// TWO NEW FEATURES SHOULD NOW BE USED HERE HOWEVER:
+        // 1. ERROR HANDLING IF THE OBJECT CANNOT BE FETCHED
+        // 2. ASYNC/AWAIT ENABLES HANDLING PROMISES IN A MORE READABLE AND INTUITIVE WAY
+                // N.B. THE ABOVE WILL REPLACE .then
+
+        catchImage()
+            .catch(error => {
+                console.log(error);
+            });
+        
+        async function catchImage() {
+            const response = await fetch('bison-plains.jpeg')
+            const blob = await response.blob();
+            document.getElementById('bison-plains').src = URL.createObjectURL(blob); 
+        }
+
+        /* THIS ALTERNATIVE INVOLVES WRITING AN async FUNCTION THAT MAKES THE fetch REQUEST
+            WHICH THEN TURNS THE BODY OF WHAT IS RETURNED IN THE HTTP RESPONSE TO A blob. THIS THEN
+            CONVERTS THE blob INTO THE FORMAT THE DOM ELEMENT EXPECTS AND MONITORS FOR AN ERROR */
+
+        
